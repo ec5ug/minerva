@@ -2,6 +2,7 @@
 
 ## Authors
 Emily Chang
+
 Alexander Davis
 
 ## Mission
