@@ -1,3 +1,7 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 {% load socialaccount %}
 <html>
 <body>
@@ -7,5 +11,11 @@
 {% else %}
   <a href="{% provider_login_url 'google' %}">Login With Google</a>
 {% endif %}
+
+  <form action="" method="post" class = "form-center">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </body>
 </html>
