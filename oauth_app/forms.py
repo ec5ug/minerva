@@ -22,5 +22,8 @@ class Student_Form(forms.Form):
     MAJOR_CHOICES = [("chemistry", "Chemistry"), ("computer_science", "Computer Science")]
     major = forms.MultipleChoiceField(label="I intend to major or am majoring in: ", choices=MAJOR_CHOICES,
                                       widget=forms.CheckboxSelectMultiple(attrs={'class': 'column-choices'}))
+    INTEREST_CHOICES = [("art", "Art"), ("engineering", "Engineering"), ("medicine", "Medicine")]
+    interests = forms.MultipleChoiceField(label="I am interested in: ", choices=INTEREST_CHOICES,
+                                          widget=forms.CheckboxSelectMultiple(attrs={'class': 'column-choices'}))
     # major = forms.MultipleChoiceField(label="I intend to major or am majoring in: ", choices=MAJOR_CHOICES,
     #                                   initial='0', widget=forms.SelectMultiple())

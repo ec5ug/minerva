@@ -29,7 +29,7 @@
                             <button type = "submit" class = "button btn-primary" name = "student-submit">Submit</button>
                         </form>
                     {% elif school_admin_form %}
-                    {% else %}
+                    {% elif registration_form %}
                         <form method = "POST">
                             {%csrf_token %}
                             {%bootstrap_form registration_form %}
