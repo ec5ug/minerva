@@ -4,18 +4,40 @@
 {% bootstrap_javascript %}
 {% load socialaccount %}
 <html>
-<body>
-<h1>My Google OAuth Project </h1>
-{% if user.is_authenticated %}
-  <p>Welcome, You are logged in as {{ user.username }}</p>
-{% else %}
-  <a href="{% provider_login_url 'google' %}">Login With Google</a>
-{% endif %}
-
-  <form action="" method="post" class = "form-center">
-      {% csrf_token %}
-      {% bootstrap_form form %}
-      <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</body>
+    <head>
+        <style>
+            .column-choices {
+                column-count: 2;
+                column-gap: 20px;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>My Google OAuth Project </h1>
+    {% if user.is_authenticated %}
+      <p>Welcome, You are logged in as {{ user.username }}</p>
+    {% else %}
+      <a href="{% provider_login_url 'google' %}">Login With Google</a>
+    {% endif %}
+        <div class="col-mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    {% if student_form %}
+                        <form method = "POST">
+                            {%csrf_token %}
+                            {%bootstrap_form student_form %}
+                            <button type = "submit" class = "button btn-primary" name = "student-submit">Submit</button>
+                        </form>
+                    {% elif school_admin_form %}
+                    {% else %}
+                        <form method = "POST">
+                            {%csrf_token %}
+                            {%bootstrap_form registration_form %}
+                            <button type = "submit" class = "button btn-primary" name = "register-submit">Submit</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
