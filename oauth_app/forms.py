@@ -2,7 +2,8 @@ from django import forms
 from django_select2.forms import Select2MultipleWidget
 
 class Registration_Form(forms.Form):
-    state = forms.CharField(label="My state of residence is")
+    STATE_CHOICES = [('alabama', 'Alabama'),('alaska', 'Alaska'),('arizona', 'Arizona'),('arkansas', 'Arkansas'),('california', 'California'),('colorado', 'Colorado'),('connecticut', 'Connecticut'),('delaware', 'Delaware'),('florida', 'Florida'),('georgia', 'Georgia'),('hawaii', 'Hawaii'),('idaho', 'Idaho'),('illinois', 'Illinois'),('indiana', 'Indiana'),('iowa', 'Iowa'),('kansas', 'Kansas'),('kentucky', 'Kentucky'),('louisiana', 'Louisiana'),('maine', 'Maine'),('maryland', 'Maryland'),('massachusetts', 'Massachusetts'),('michigan', 'Michigan'),('minnesota', 'Minnesota'),('mississippi', 'Mississippi'),('missouri', 'Missouri'),('montana', 'Montana'),('nebraska', 'Nebraska'),('nevada', 'Nevada'),('new_hampshire', 'New Hampshire'),('new_jersey', 'New Jersey'),('new_mexico', 'New Mexico'),('new_york', 'New York'),('north_carolina', 'North Carolina'),('north_dakota', 'North Dakota'),('ohio', 'Ohio'),('oklahoma', 'Oklahoma'),('oregon', 'Oregon'),('pennsylvania', 'Pennsylvania'),('rhode_island', 'Rhode Island'),('south_carolina', 'South Carolina'),('south_dakota', 'South Dakota'),('tennessee', 'Tennessee'),('texas', 'Texas'),('utah', 'Utah'),('vermont', 'Vermont'),('virginia', 'Virginia'),('washington', 'Washington'),('west_virginia', 'West Virginia'),('wisconsin', 'Wisconsin'),('wyoming', 'Wyoming'),('american_samoa', 'American Samoa'),('guam', 'Guam'),('northern_mariana_islands', 'Northern Mariana Islands'),('puerto_rico', 'Puerto Rico'),('u.s._virgin_islands', 'U.S. Virgin Islands'),]
+    state = forms.CharField(label="My state of residence is", widget=forms.Select(choices=STATE_CHOICES))
     county = forms.CharField(label="My county of residence is")
     school = forms.CharField(label="I attend the following school")
     role = forms.CharField(label="I intend to use this scholarship service as a",
@@ -11,8 +12,7 @@ class Registration_Form(forms.Form):
 class Student_Form(forms.Form):
     age = forms.IntegerField(label="I am __ years old", min_value=1, max_value=123)
     edu_lvl = forms.CharField(label="My current level of education is",
-                              widget=forms.Select(choices=[("middle_school", "Middle School"),
-                                                           ("high_school", "High School"),
+                              widget=forms.Select(choices=[("high_school", "High School"),
                                                            ("undergraduate", "Undergraduate"), ("graduate", "Graduate"),
                                                            ("doctoral", "Doctoral")]))
     gpa = forms.FloatField(label="My (unweighted) GPA is __", min_value=0, max_value=5)
