@@ -16,3 +16,5 @@ class UserInfo(models.Model):
     classes = models.CharField(max_length=100, null=True)
     intended_major = models.CharField(max_length=20, null=True)
     interests = models.CharField(max_length=100, null=True)
+    def __str__(self):
+        return str(self.user) + " " + str(self.role)

@@ -29,10 +29,10 @@ def index(request):
                         elif role == 'school_admin':
                             print("I'm a user")
         else:
+            user = UserInfo.objects.get(user=username)
             if 'student-submit' in request.POST:
                 student_form = Student_Form(request.POST)
                 if student_form.is_valid():
-                    user = UserInfo.objects.get(user=username)
                     user.age = student_form.cleaned_data['age']
                     user.edu_lvl = student_form.cleaned_data['edu_lvl']
                     user.gpa = student_form.cleaned_data['gpa']
