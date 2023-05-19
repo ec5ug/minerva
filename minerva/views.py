@@ -34,18 +34,19 @@ def index(request):
                         county = registration_form.cleaned_data['county']
                         school = registration_form.cleaned_data['school']
                         role = registration_form.cleaned_data['role']
-                        u = UserInfo(user=username, role='student', date_of_update=current_date, state=state,
+                        u = UserInfo(user=username, date_of_update=current_date, state=state,
                                      county=county, school=school)
                         u.save()
                         if role == 'student':
                             student_form = Student_Form()
                         elif role == 'school_admin':
-                            print("I'm a user")
+                            school_admin_form = True
         else:
             user = UserInfo.objects.get(user=username)
             if 'student-submit' in request.POST:
                 student_form = Student_Form(request.POST)
                 if student_form.is_valid():
+                    user.role = "student"
                     user.age = student_form.cleaned_data['age']
                     user.edu_lvl = student_form.cleaned_data['edu_lvl']
                     user.gpa = student_form.cleaned_data['gpa']

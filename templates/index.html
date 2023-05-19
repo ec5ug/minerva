@@ -1,24 +1,23 @@
+{% extends "base.html" %}
 {% load static %}
 {% load bootstrap5 %}
 {% bootstrap_css %}
-{% bootstrap_javascript %}
 {% load socialaccount %}
-<html>
-    <head>
+
+{% block content %}
+    <body>
         <style>
             .column-choices {
                 column-count: 3;
                 column-gap: 20px;
             }
         </style>
-    </head>
-    <body>
-    <h1>My Google OAuth Project </h1>
-    {% if user.is_authenticated %}
-      <p>Welcome, You are logged in as {{ user.username }}</p>
-    {% else %}
-      <a href="{% provider_login_url 'google' %}">Login With Google</a>
-    {% endif %}
+        <h1>My Google OAuth Project </h1>
+        {% if user.is_authenticated %}
+          <p>Welcome, You are logged in as {{ user.username }}</p>
+        {% else %}
+          <a href="{% provider_login_url 'google' %}">Login With Google</a>
+        {% endif %}
         <div class="col-mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -29,6 +28,11 @@
                             <button type = "submit" class = "button btn-primary" name = "student-submit">Submit</button>
                         </form>
                     {% elif school_admin_form %}
+                        {% if user.userinfo.role == "student" %}
+                            <p>Thank you submitting a request for school administrator privileges.
+                                Please wait while we process your request.<br><br>To check if your process has been accepted,
+                                please click refresh.</p>
+                        {% endif %}
                     {% elif registration_form %}
                         <form method = "POST">
                             {%csrf_token %}
@@ -40,4 +44,4 @@
             </div>
         </div>
     </body>
-</html>
+{% endblock %}

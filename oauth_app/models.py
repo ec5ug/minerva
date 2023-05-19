@@ -4,8 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=20, default="student", null=True,
-                            choices=[("student", "student"), ("school_admin", "school_admin")])
+    role = models.CharField(max_length=20, null=True, choices=[("student", "student"), ("school_admin", "school_admin")])
     date_of_update = models.DateField(null=True)
     age = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(123)], null=True)
     edu_lvl = models.CharField(max_length=20, null=True)

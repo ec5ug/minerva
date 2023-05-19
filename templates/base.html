@@ -1,0 +1,29 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% load socialaccount %}
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+        {% if not user.is_authenticated %}
+        {% elif user.userinfo.role == None %}
+            <ul class="nav nav-tabs">
+                <li class="nav-tabs me-4" >
+                    None
+                </li>
+            </ul>
+            <ul class="nav nav-tabs ml-auto">
+                <li class="nav-item">
+                 <a class="nav-link" href="/logout"> Log Out</a>
+                </li>
+            </ul>
+        {% elif user.userinfo.role == "admin" %}
+        {% elif user.userinfo.role == "student" %}
+        {% else %}
+            <!-- Handle other role cases here -->
+        {% endif %}
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
