@@ -1,16 +1,29 @@
 from django.shortcuts import render
 from oauth_app.models import UserInfo
 from oauth_app.forms import Registration_Form, Student_Form
-from datetime import datetime
+from datetime import datetime, date
 
 # Create your views here.
+
+def register(username):
+    if len(UserInfo.objects.filter(user=username)) == 0:
+        return True
+    else:
+        user = UserInfo.objects.get(user=username)
+        last_update_components = str(user.date_of_update).split("-")
+        last_update = date(int(last_update_components[0]), int(last_update_components[1]), int(last_update_components[2]))
+        today = date(datetime.today().year, datetime.today().month, datetime.today().day)
+        delta = today - last_update
+        if delta.days >= 365:
+            return True
+    return False
 def index(request):
     registration_form = None
     student_form = None
     school_admin_form = None
     if request.user.is_authenticated:
         username = request.user
-        if len(UserInfo.objects.filter(user=username)) == 0:
+        if register(username):
             current_date = datetime.today().date()
             registration_form = Registration_Form()
             if request.method == 'POST':
