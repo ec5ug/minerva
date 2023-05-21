@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SITE_ID = 0
-
+SECURE_SSL_REDIRECT=False
+SOCIALACCOUNT_LOGIN_ON_GET=True # skip secondary page
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
