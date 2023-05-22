@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from oauth_app.models import UserInfo
+from minerva.models import Scholarship
 
 # Register your models here.
 # class UserInfoInline(admin.StackedInline):
@@ -16,3 +17,4 @@ from oauth_app.models import UserInfo
 # # admin.site.register(User, UserAdmin)
 # admin.site.register(User)
 admin.site.register(UserInfo)
+admin.site.register(Scholarship)
