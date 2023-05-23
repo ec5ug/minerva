@@ -52,8 +52,12 @@
                 <li class="nav-tabs">
                     Recommend a Scholarship
                 </li>
-                <li class="nav-tabs">
-                    Submit Error Report
+                </li>
+                    {% if request.resolver_match.url_name == "submit_error_report" %}
+                        <a class="nav-link active" href="/submit_error_report">Submit Error Report</a>
+                        {% else %}
+                        <a class="nav-link" href="/submit_error_report">Submit Error Report</a>
+                    {% endif %}
                 </li>
             </ul>
             <ul class="nav nav-tabs ml-auto">

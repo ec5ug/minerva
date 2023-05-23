@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from oauth_app.models import UserInfo
 from oauth_app.forms import Registration_Form, Student_Form
+from minerva.forms import Error_Report_Form
 from datetime import datetime, date
 
 # Create your views here.
@@ -59,3 +60,10 @@ def index(request):
                            'school_admin_form':school_admin_form})
     return render(request, 'index.html', {'registration_form': registration_form, 'student_form':student_form,
                            'school_admin_form':school_admin_form})
+
+def submit_error_report(request):
+    error_report_form = Error_Report_Form()
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            error_report_form = Error_Report_Form(request.POST)
+    return render(request, 'student_error_report.html', {'form': error_report_form})

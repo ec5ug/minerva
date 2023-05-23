@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
+    path('submit_error_report', views.submit_error_report, name='submit_error_report')
 ]
