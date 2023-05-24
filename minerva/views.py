@@ -67,3 +67,9 @@ def submit_error_report(request):
         if request.method == 'POST':
             error_report_form = Error_Report_Form(request.POST)
     return render(request, 'student_error_report.html', {'form': error_report_form})
+
+def see_database(request):
+    return render(request, 'admin_database.html')
+
+def submit_new_scholarship(request):
+    return render(request, 'admin_new_scholarship.html')

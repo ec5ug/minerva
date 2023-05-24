@@ -24,5 +24,7 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
-    path('submit_error_report', views.submit_error_report, name='submit_error_report')
+    path('submit_error_report', views.submit_error_report, name='submit_error_report'),
+    path('see_database', views.see_database, name='see_database'),
+    path('submit_new_scholarship', views.submit_new_scholarship, name='submit_new_scholarship')
 ]

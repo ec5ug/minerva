@@ -26,8 +26,12 @@
                 <li class="nav-tabs">
                     Home
                 </li>
-                <li class="nav-tabs">
-                    Database
+                <li>
+                    {% if request.resolver_match.url_name == "see_database" %}
+                        <a class="nav-link active" href="/see_database">Database</a>
+                    {% else %}
+                        <a class="nav-link" href="/see_database">Database</a>
+                    {% endif %}
                 </li>
                 <li class="nav-tabs">
                     Student-Recommended Scholarships
@@ -55,7 +59,7 @@
                 </li>
                     {% if request.resolver_match.url_name == "submit_error_report" %}
                         <a class="nav-link active" href="/submit_error_report">Submit Error Report</a>
-                        {% else %}
+                    {% else %}
                         <a class="nav-link" href="/submit_error_report">Submit Error Report</a>
                     {% endif %}
                 </li>

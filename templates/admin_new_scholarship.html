@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% load socialaccount %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.age_requirement.label_tag }}
+    {{ form.age_requirement }}
+    {% if form.age_requirement.value == 'yes' %}
+      {{ form.minimum_age.label_tag }}
+      {{ form.minimum_age }}
+    {% endif %}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
