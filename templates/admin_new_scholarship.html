@@ -5,14 +5,37 @@
 {% load socialaccount %}
 
 {% block content %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form.age_requirement.label_tag }}
-    {{ form.age_requirement }}
-    {% if form.age_requirement.value == 'yes' %}
-      {{ form.minimum_age.label_tag }}
-      {{ form.minimum_age }}
-    {% endif %}
-    <button type="submit">Submit</button>
-  </form>
+   <div class="col-mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.age_requirement.label_tag }}
+            {{ form.age_requirement }}
+            <div id="minimum-age-wrapper" style="display: none;">
+              {{ form.minimum_age.label_tag }}
+              {{ form.minimum_age }}
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+     </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+      var minimumAgeWrapper = $('#minimum-age-wrapper');
+      var minimumAgeField = $('#id_minimum_age');
+
+      $('#id_age_requirement').on('change', function() {
+          if ($(this).val() === 'yes') {
+              minimumAgeWrapper.show();
+              minimumAgeField.prop('disabled', false);
+          } else {
+              minimumAgeWrapper.hide();
+              minimumAgeField.prop('disabled', true);
+          }
+      });
+  });
+  </script>
 {% endblock %}

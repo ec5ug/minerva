@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from oauth_app.models import UserInfo
 from oauth_app.forms import Registration_Form, Student_Form
-from minerva.forms import Error_Report_Form
+from minerva.forms import Error_Report_Form, Scholarship_Form
 from datetime import datetime, date
 
 # Create your views here.
@@ -72,4 +72,5 @@ def see_database(request):
     return render(request, 'admin_database.html')
 
 def submit_new_scholarship(request):
-    return render(request, 'admin_new_scholarship.html')
+    scholarship_form = Scholarship_Form()
+    return render(request, 'admin_new_scholarship.html', {'form': scholarship_form})
